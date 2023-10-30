@@ -12,56 +12,58 @@ export const NavbarComponent = () => {
     ];
 
     return (
-        <Navbar onMenuOpenChange={setIsMenuOpen} shouldHideOnScroll>
+        <>
+            <Navbar onMenuOpenChange={setIsMenuOpen} shouldHideOnScroll>
 
-            <NavbarContent>
-                <NavbarMenuToggle
-                    aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-                    className="sm:hidden"
-                />
-                <NavbarBrand>
-                    <p className="font-bold text-inherit">Coin Cap</p>
-                </NavbarBrand>
-            </NavbarContent>
+                <NavbarContent>
+                    <NavbarMenuToggle
+                        aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+                        className="sm:hidden"
+                    />
+                    <NavbarBrand>
+                        <p className="font-bold text-inherit">Coin Cap</p>
+                    </NavbarBrand>
+                </NavbarContent>
 
-            <NavbarContent className="hidden sm:flex gap-4" justify="center">
-                <NavbarItem>
-                    <Link color="foreground" href="/" as={NextLink}>
-                        Inicio
-                    </Link>
-                </NavbarItem>
-                <NavbarItem isActive>
-                    <Link href="/favoritos" aria-current="page" as={NextLink}>
-                        Favoritos
-                    </Link>
-                </NavbarItem>
-
-            </NavbarContent>
-            <NavbarContent justify="end">
-                <NavbarItem>
-                    <Button as={NextLink} color="primary" href="/" variant="flat">
-                        Cerrar sesión
-                    </Button>
-                </NavbarItem>
-            </NavbarContent>
-
-            <NavbarMenu>
-                {menuItems.map((item, index) => (
-                    <NavbarMenuItem key={`${item}-${index}`}>
-                        <Link
-                            color={
-                                index === 2 ? "primary" : index === menuItems.length - 1 ? "danger" : "foreground"
-                            }
-                            className="w-full"
-                            href="#"
-                            size="lg"
-                        >
-                            {item}
+                <NavbarContent className="hidden sm:flex gap-4" justify="center">
+                    <NavbarItem>
+                        <Link color="foreground" href="/" as={NextLink}>
+                            Inicio
                         </Link>
-                    </NavbarMenuItem>
-                ))}
-            </NavbarMenu>
+                    </NavbarItem>
+                    <NavbarItem isActive>
+                        <Link href="/favoritos" aria-current="page" as={NextLink}>
+                            Favoritos
+                        </Link>
+                    </NavbarItem>
 
-        </Navbar>
+                </NavbarContent>
+                <NavbarContent justify="end">
+                    <NavbarItem>
+                        <Button as={NextLink} color="primary" href="/" variant="flat">
+                            Cerrar sesión
+                        </Button>
+                    </NavbarItem>
+                </NavbarContent>
+
+                <NavbarMenu>
+                    {menuItems.map((item, index) => (
+                        <NavbarMenuItem key={`${item}-${index}`}>
+                            <Link
+                                color={
+                                    index === 2 ? "primary" : index === menuItems.length - 1 ? "danger" : "foreground"
+                                }
+                                className="w-full"
+                                href="#"
+                                size="lg"
+                            >
+                                {item}
+                            </Link>
+                        </NavbarMenuItem>
+                    ))}
+                </NavbarMenu>
+
+            </Navbar>
+        </>
     );
 };

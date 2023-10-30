@@ -1,13 +1,40 @@
-import { Inter } from 'next/font/google'
-import { Button } from '@nextui-org/react'
-import { LayoutComponent } from '@/components/layouts'
+import { GetStaticProps } from 'next';
+import { FC } from 'react';
 
-const inter = Inter({ subsets: ['latin'] })
+import { LayoutComponent } from '@/components/layouts';
+import { coinCap } from '@/api';
+import { AssetData, AssetsListResponse } from '@/interfaces';
+import { Card, CardHeader, CardFooter, Button, Image } from '@nextui-org/react';
+import { AssetsCard } from '@/components/assetsComponents';
 
-export default function Home() {
+interface Props {
+  assets: AssetData[];
+}
+
+const Home: FC<Props> = ({ assets }) => {
+
   return (
     <LayoutComponent title='Lista de criptomonedas'>
-      <Button color='primary'>Click me</Button>
+      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-3'>
+        {
+          assets.map((asset) => (
+            <AssetsCard key={asset.rank} asset={asset} />
+          ))
+        }
+      </div>
     </LayoutComponent>
   )
 }
+
+export const getStaticProps: GetStaticProps = async (ctx) => {
+
+  const { data } = await coinCap.get<AssetsListResponse>('/assets');
+
+  return {
+    props: {
+      assets: data.data
+    }
+  }
+}
+
+export default Home

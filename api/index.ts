@@ -1,0 +1,1 @@
+export { default as coinCap} from './coinCapApi';

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import NextLink from "next/link";
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, Avatar, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@nextui-org/react";
+import { LoginButton } from ".";
 
 export const NavbarComponent = () => {
 
@@ -40,12 +41,10 @@ export const NavbarComponent = () => {
                     </NavbarItem>
 
                 </NavbarContent>
-                
+
                 <NavbarContent justify="end">
                     <NavbarItem>
-                        <Button as={NextLink} href="/" variant="flat" className="bg-slate-200 border-1 border-yellow-500 text-slate-900">
-                            Cerrar sesión
-                        </Button>
+                        <LoginButton />
                     </NavbarItem>
                 </NavbarContent>
 

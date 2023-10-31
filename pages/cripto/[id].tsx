@@ -1,9 +1,9 @@
+import { GetStaticPaths, GetStaticProps } from "next/types";
+import { FC } from 'react';
+import { Card, CardHeader, CardFooter, Button, CardBody } from "@nextui-org/react";
 import { coinCap } from "@/api";
 import { LayoutComponent } from "@/components/layouts";
 import { Asset, AssetHistory, AssetsListResponse } from "@/interfaces";
-import { Card, CardHeader, CardFooter, Button, CardBody, Image } from "@nextui-org/react";
-import { GetStaticPaths, GetStaticProps } from "next/types";
-import { FC } from 'react';
 
 interface Props {
   asset: Asset;
@@ -12,12 +12,10 @@ interface Props {
 
 const AssetPage: FC<Props> = ({ asset, history }) => {
 
-  console.log(history)
-
   return (
     <LayoutComponent>
 
-      <Card isFooterBlurred className="w-full h-[400px] bg-slate-900 mt-5">
+      <Card isFooterBlurred className="w-full h-[600px] bg-slate-900 mt-5">
 
         <CardHeader className="absolute z-10 top-1 flex-col items-center">
           <h4 className="text-slate-200 font-medium text-2xl">{asset.data.symbol}</h4>
@@ -40,6 +38,21 @@ const AssetPage: FC<Props> = ({ asset, history }) => {
             <p className="text-2xl text-yellow-400">Precio USD:</p>
             <p className="text-2xl text-white">{asset.data.priceUsd}</p>
           </div>
+
+          <div className="gap-2 mb-10">
+            <p className="text-2xl text-yellow-400 mt-5">Historial 24hrs:</p>
+            {
+              history.data.map((history) => (
+                <div className="mt-2 mb-3" key={history.time}>
+                  <p className="text-2xl text-yellow-400">Hora</p>
+                  <p className="text-2xl text-white">{history.date}</p>
+                  <p className="text-2xl text-yellow-400">precio</p>
+                  <p className="text-2xl text-white">{history.priceUsd}</p>
+                </div>
+              ))
+            }
+          </div>
+
         </CardBody>
 
         <CardFooter className="absolute bg-white/30 bottom-0 border-t-1 border-yellow-500 z-10 justify-between">

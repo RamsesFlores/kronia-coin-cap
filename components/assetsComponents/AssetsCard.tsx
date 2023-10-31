@@ -26,7 +26,7 @@ export const AssetsCard: FC<Props> = ({ asset: { id, rank, name, symbol } }) => 
                         <p className="text-slate-50 text-tiny font-semibold">{name}.</p>
                         <p className="text-amber-500 text-tiny">Rank #{rank}.</p>
                     </div>
-                    <Button className="text-tiny" radius="full" size="sm" onClick={onAssetClick}>
+                    <Button className="text-tiny border-1 border-yellow-500" radius="full" size="sm" onClick={onAssetClick}>
                         Ver más
                     </Button>
                 </CardFooter>

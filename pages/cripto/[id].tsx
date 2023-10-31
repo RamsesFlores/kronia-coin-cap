@@ -1,9 +1,10 @@
+import { FC, useState } from 'react';
 import { GetStaticPaths, GetStaticProps } from "next/types";
-import { FC } from 'react';
 import { Card, CardHeader, CardFooter, Button, CardBody } from "@nextui-org/react";
 import { coinCap } from "@/api";
 import { LayoutComponent } from "@/components/layouts";
 import { Asset, AssetHistory, AssetsListResponse } from "@/interfaces";
+import { localCriptosFavorites } from "@/utils";
 
 interface Props {
   asset: Asset;
@@ -12,8 +13,15 @@ interface Props {
 
 const AssetPage: FC<Props> = ({ asset, history }) => {
 
+  const [isInFavorites, setIsInFavorites] = useState(localCriptosFavorites.existInFavorites(asset.data.id));
+
+  const onToggleFavorite = () => {
+    localCriptosFavorites.toogleFavorite(asset.data.id);
+    setIsInFavorites(!isInFavorites);
+  }
+
   return (
-    <LayoutComponent>
+    <LayoutComponent title={asset.data.name}>
 
       <Card isFooterBlurred className="w-full h-[600px] bg-slate-900 mt-5">
 
@@ -60,8 +68,10 @@ const AssetPage: FC<Props> = ({ asset, history }) => {
             <p className="text-slate-50 text-tiny font-semibold">{asset.data.name}.</p>
             <p className="text-amber-500 text-tiny">Rank #{asset.data.rank}.</p>
           </div>
-          <Button className="text-tiny" radius="full" size="sm">
-            Favoritos
+          <Button onClick={onToggleFavorite} className="text-tiny border-1 border-yellow-500" radius="full" size="sm">
+            {
+              isInFavorites ? 'Quitar de favoritos' : 'Guardar en favoritos'
+            }
           </Button>
         </CardFooter>
 

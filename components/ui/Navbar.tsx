@@ -1,6 +1,6 @@
 import { useState } from "react";
 import NextLink from "next/link";
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NavbarMenuToggle, NavbarMenu, NavbarMenuItem } from "@nextui-org/react";
+import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, Avatar, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@nextui-org/react";
 
 export const NavbarComponent = () => {
 
@@ -26,21 +26,24 @@ export const NavbarComponent = () => {
                 </NavbarContent>
 
                 <NavbarContent className="hidden sm:flex gap-4" justify="center">
+
                     <NavbarItem>
                         <Link color="foreground" href="/" as={NextLink}>
                             Inicio
                         </Link>
                     </NavbarItem>
+
                     <NavbarItem isActive>
-                        <Link href="/favoritos" aria-current="page" as={NextLink}>
+                        <Link href="/favoritos" aria-current="page" color="warning" as={NextLink}>
                             Favoritos
                         </Link>
                     </NavbarItem>
 
                 </NavbarContent>
+                
                 <NavbarContent justify="end">
                     <NavbarItem>
-                        <Button as={NextLink} color="primary" href="/" variant="flat">
+                        <Button as={NextLink} href="/" variant="flat" className="bg-slate-200 border-1 border-yellow-500 text-slate-900">
                             Cerrar sesión
                         </Button>
                     </NavbarItem>

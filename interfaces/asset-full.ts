@@ -1,9 +1,9 @@
-export interface AssetsListResponse {
-    data:      AssetData[];
+export interface Asset {
+    data:      Data;
     timestamp: number;
 }
 
-export interface AssetData {
+export interface Data {
     id:                string;
     rank:              string;
     symbol:            string;
